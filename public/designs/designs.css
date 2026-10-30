@@ -98,3 +98,30 @@
 @media(prefers-reduced-motion:reduce){.ivory-hero.ivory-aperture{height:100svh}.ivory-aperture .ivory-main-photo{clip-path:none!important}.ivory-aperture .ivory-hero-type{opacity:0}.ivory-aperture:after{opacity:1}.ivory-scroll-guide{display:none}}
 
 .ivory-hero.ivory-aperture.ivory-ready h1{animation:none!important;opacity:clamp(0,calc(1 - var(--aperture)*3.5),1)}
+
+/* C / CURTAIN CALL: a complete change from diagonal shards to a theatre reveal. */
+.ag-theatre .ag-slides{opacity:1;filter:none}
+.ag-theatre .ag-slides img{transform:scale(1.04);transition:opacity 1.2s ease,transform 6s ease}
+.ag-theatre.ag-impact .ag-slides img.active{animation:theatre-scene 4s ease-out both}
+.ag-curtains{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden;perspective:1200px}
+.ag-curtain{position:absolute;top:0;bottom:0;width:50.3%;background:repeating-linear-gradient(90deg,#160e20 0%,#332039 6%,#1b1027 12%,#40283e 16%,#1a1024 22%);box-shadow:inset 0 0 80px #0008,0 0 50px #0008;display:flex;align-items:center;justify-content:center;will-change:transform;transform-origin:top center}
+.ag-curtain:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#08030c99,transparent 30%,#ffffff07 60%,#0006);border-bottom:8px solid #94725344}
+.ag-curtain-left{left:0;border-right:1px solid #d9bda844}
+.ag-curtain-right{right:0;border-left:1px solid #d9bda844}
+.ag-curtain span{position:relative;z-index:1;font:400 clamp(30px,4vw,70px)/1 Georgia,serif;letter-spacing:.1em;color:#dcc6a5;opacity:.85}
+.ag-theatre.ag-impact .ag-curtain-left{animation:curtain-open-left 3.8s cubic-bezier(.6,0,.15,1) both}
+.ag-theatre.ag-impact .ag-curtain-right{animation:curtain-open-right 3.8s cubic-bezier(.6,0,.15,1) both}
+.ag-theatre.ag-impact .ag-hero-copy h1{animation:theatre-title 2s 1.65s both}
+.ag-theatre.ag-impact .ag-hero-copy>.eyebrow{animation:theatre-title 1.7s 1.5s both}
+.ag-theatre.ag-impact .ag-hero-copy>p:not(.eyebrow){animation:theatre-title 1.7s 2.1s both}
+.ag-theatre.ag-impact .ag-arrow{animation:theatre-title 1.5s 2.4s both}
+.ag-theatre.ag-impact .ag-hero-shade:after{animation:none;background:none}
+.ag-theatre .ag-hero-copy{top:26%}
+.ag-theatre .ag-controls{z-index:7}
+.ag-theatre .ag-caption{z-index:7}
+@keyframes curtain-open-left{0%,12%{transform:translateX(0) scaleX(1)}70%{transform:translateX(-83%) scaleX(.5)}100%{transform:translateX(-105%) scaleX(.12)}}
+@keyframes curtain-open-right{0%,12%{transform:translateX(0) scaleX(1)}70%{transform:translateX(83%) scaleX(.5)}100%{transform:translateX(105%) scaleX(.12)}}
+@keyframes theatre-title{from{opacity:0;translate:0 22px;filter:blur(5px)}to{opacity:1;translate:0 0;filter:blur(0)}}
+@keyframes theatre-scene{from{transform:scale(1.12);filter:brightness(.5)}to{transform:scale(1);filter:brightness(1)}}
+@media(max-width:800px){.ag-theatre .ag-hero-copy{top:29%}.ag-curtain span{font-size:6vw;letter-spacing:.06em}}
+@media(prefers-reduced-motion:reduce){.ag-curtains{display:none}.ag-theatre.ag-impact .ag-hero-copy h1,.ag-theatre.ag-impact .ag-hero-copy>.eyebrow,.ag-theatre.ag-impact .ag-hero-copy>p:not(.eyebrow),.ag-theatre.ag-impact .ag-arrow,.ag-theatre.ag-impact .ag-slides img.active{animation:none!important;opacity:1;filter:none;translate:none;transform:none}}
