@@ -1,7 +1,7 @@
 "use client";
 
 import Lenis from "lenis";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
@@ -26,7 +26,6 @@ const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
  */
 export function Motion() {
   const pathname = usePathname();
-  const router = useRouter();
   const veil = useRef<HTMLDivElement>(null);
   const veiled = useRef(false);
   const lenisRef = useRef<Lenis | null>(null);
@@ -44,54 +43,26 @@ export function Motion() {
     });
   }, [pathname]);
 
-  // Link clicks: the page already open goes back to its top (e.g. Home in the menu while on
-  // Home); another page of the site opens through the glass pane.
+  // Handle same-page Home links explicitly; let Next handle cross-page base paths.
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const toTop = (instant: boolean) => {
-      if (instant) {
-        window.scrollTo({ top: 0, behavior: "instant" });
-        lenisRef.current?.scrollTo(0, { immediate: true, force: true });
-      } else if (lenisRef.current) lenisRef.current.scrollTo(0, { force: true });
-      else window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-    const onClick = (e: MouseEvent) => {
-      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const a = (e.target as Element).closest?.("a");
-      if (!a || a.target || a.hasAttribute("download")) return;
-      const url = new URL(a.href, location.href);
-      if (url.origin !== location.origin || /\.\w+$/.test(url.pathname)) return;
-      if (url.pathname === location.pathname) {
-        if (url.hash) return;
-        // From the open menu: jump once it has closed (the page scrolls again); otherwise glide up.
-        const fromMenu = document.documentElement.classList.contains("menu-open");
-        window.setTimeout(() => toTop(fromMenu || reduced), fromMenu ? 80 : 0);
-        return;
-      }
-      const v = veil.current;
-      if (reduced || !v) return;
-      e.preventDefault();
-      // Destination title from the menu (number and name); pages not in the menu show the logo only.
-      const item = document.querySelector(`.menu-links a[href="${url.pathname}"]`);
-      v.querySelector(".pv-no")!.textContent = item?.querySelector(".menu-no")?.textContent ?? "";
-      v.querySelector(".pv-name")!.textContent = item?.querySelector(".menu-name")?.textContent ?? "";
-      v.classList.remove("out");
-      void v.offsetWidth; // restart from clear glass
-      v.classList.add("in");
-      veiled.current = true;
-      window.setTimeout(() => router.push(url.pathname + url.search + url.hash), 620);
-      // Never leave the page covered if the navigation does not happen.
+    const onClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const link = (event.target as Element).closest?.("a");
+      if (!link || (link.target && link.target !== "_self") || link.hasAttribute("download")) return;
+      const url = new URL(link.href, location.href);
+      if (url.origin !== location.origin || url.pathname !== location.pathname || url.search !== location.search || url.hash) return;
+      event.preventDefault();
+      // Wait for an open menu to release its scroll lock before resetting Lenis.
       window.setTimeout(() => {
-        if (veiled.current) {
-          veiled.current = false;
-          v.classList.replace("in", "out");
-        }
-      }, 5000);
+        const lenis = lenisRef.current;
+        lenis?.scrollTo(0, { immediate: true, force: true });
+        window.scrollTo({ top: 0, behavior: "instant" });
+        if (location.hash) history.replaceState(history.state, "", url.pathname + url.search);
+      }, 100);
     };
-    // Capture phase: runs before Next's <Link> handler, which then sees defaultPrevented and stands down.
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);
-  }, [router]);
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

@@ -40,7 +40,10 @@ jobs:
           GITHUB_PAGES: "1"
           PAGES_BASE_PATH: /${{ github.event.repository.name }}
           NEXT_PUBLIC_WEB3FORMS_KEY: ${{ vars.WEB3FORMS_KEY }}
-      - run: touch out/.nojekyll
+      - run: |
+          touch out/.nojekyll
+          mkdir -p out/instagram
+          test -f out/instagram/posts.json || echo "[]" > out/instagram/posts.json
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
