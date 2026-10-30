@@ -1,0 +1,43 @@
+(() => {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) {
+        e.target.classList.add('seen');
+        io.unobserve(e.target);
+    } }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(e => io.observe(e));
+    const slides = [...document.querySelectorAll('.ag-slides img')], dots = [...document.querySelectorAll('[data-slide]')];
+    let n = 0, paused = reduce, timer;
+    function show(i) { if (i === n)
+        return; const hero = document.querySelector(".afterglow-hero"); hero?.classList.remove("ag-impact"); if (hero)
+        void hero.offsetWidth; hero?.classList.add("ag-impact"); n = i; slides.forEach((s, k) => s.classList.toggle('active', k === i)); dots.forEach((d, k) => { d.classList.toggle('active', k === i); d.setAttribute('aria-pressed', String(k === i)); }); const c = document.querySelector('.ag-current'); if (c)
+        c.textContent = String(i + 1).padStart(2, '0'); }
+    function schedule() { clearInterval(timer); if (!paused && slides.length)
+        timer = setInterval(() => { if (!document.hidden)
+            show((n + 1) % slides.length); }, 13000); }
+    dots.forEach(b => b.addEventListener('click', () => { show(Number(b.dataset.slide)); schedule(); }));
+    const pause = document.querySelector('.ag-pause');
+    if (pause) {
+        pause.textContent = paused ? '▶' : 'Ⅱ';
+        pause.addEventListener('click', () => { paused = !paused; document.querySelector('.afterglow-hero')?.getAnimations({ subtree: true }).forEach(a => paused ? a.pause() : a.play()); pause.textContent = paused ? '▶' : 'Ⅱ'; pause.setAttribute('aria-label', paused ? '画像の自動切り替えを再開' : '画像の自動切り替えを停止'); schedule(); });
+    }
+    schedule();
+    const hero = document.querySelector(".afterglow-hero");
+    if (hero) {
+        const curtain = document.createElement('div');
+        curtain.className = 'ag-curtains';
+        curtain.setAttribute('aria-hidden', 'true');
+        curtain.innerHTML = '<div class="ag-curtain ag-curtain-left"><span>THE</span></div><div class="ag-curtain ag-curtain-right"><span>JEWELRY</span></div>';
+        hero.prepend(curtain);
+        const kinetic = document.createElement('div');
+        kinetic.className = 'ag-kinetic';
+        kinetic.setAttribute('aria-hidden', 'true');
+        kinetic.innerHTML = '<span class="ag-kinetic-one">MAKE IT.</span><span class="ag-kinetic-two">UNFORGETTABLE.</span><span class="ag-kinetic-three">FEEL THE MOMENT.</span>';
+        hero.append(kinetic);
+        hero.classList.add('ag-theatre');
+        hero.classList.add('ag-radical');
+        requestAnimationFrame(() => hero.classList.add("ag-impact"));
+        hero.setAttribute("aria-label", "左右の幕が開き、イベントの舞台が現れるオープニング");
+    }
+    const events = [['event-runway', 'ブランドイベントのイメージ', 'BRAND EVENTS', 'ブランドの魅力を、体感に。', 'ファッションショー、新作発表会、ポップアップ。世界観を伝えるイベントをご相談ください。'], ['atelier-light', '光に彩られた展示空間', 'EXHIBITIONS', '感性と、出会う。', '企画展、アート展示、インスタレーション。作品の魅力を届ける会場として。'], ['atelier-reception', '海を望むレセプション空間', 'RECEPTIONS', '大切な人と、特別な時間を。', '企業パーティー、周年記念、交流会。人数や進行に合わせた会場利用をご相談ください。']];
+    document.querySelectorAll('[data-event]').forEach(b => b.addEventListener('click', () => { const i = Number(b.dataset.event), v = events[i]; document.querySelectorAll('[data-event]').forEach(x => { x.classList.toggle('active', x === b); x.setAttribute('aria-pressed', String(x === b)); }); const img = document.querySelector('#event-image'); img.src = '../../images/' + v[0] + (i === 0 ? '-1472.webp' : '-1200.webp'); img.alt = v[1]; ['event-label', 'event-title', 'event-body'].forEach((id, k) => document.getElementById(id).textContent = v[k + 2]); }));
+})();
