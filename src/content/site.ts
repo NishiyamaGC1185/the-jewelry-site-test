@@ -198,7 +198,7 @@ const ja: Content = {
   about: {
     hero: { kicker: "About", title: "THE JEWELRYについて", lead: "人が集まり、心が動く。大阪湾のイベント施設。", image: IMG("atelier-sunset.jpg") },
     chapters: [
-      { no: "I", title: "大阪湾に面したイベント会場", body: "THE JEWELRYは、大阪市南港の大阪湾に面したイベント施設です。博物館として生まれたドームを活かし、イベント会場・ギャラリーとしてのご利用を受け付けています。展覧会、ブランドイベント、レセプションなど、開催したい内容をお聞かせください。", image: IMG("atelier-dome.jpg") },
+      { no: "I", title: "大阪湾に面したイベント会場", body: "THE JEWELRYは、大阪市南港の大阪湾に面したイベント施設です。博物館として生まれたドームを活かし、イベント会場・ギャラリーとしてのご利用を受け付けています。展覧会、ブランドイベント、レセプションなど、開催したい内容をお聞かせください。", image: IMG("waterfront-bluehour.jpg") },
       { no: "II", title: "催事に合わせて選べる空間", body: "ドーム、海に面した外周部、エントランス館内。それぞれの特徴を活かして、催事の内容に合う会場づくりをご相談いただけます。照明や音響、展示物の設置など、ご希望の演出や必要な設備もあわせてお知らせください。", image: IMG("atelier-sail.jpg") },
       { no: "III", title: "主催する方にも、訪れる方にも", body: "開催をご検討の方は、日程や企画が未定の段階でもご相談ください。会場のご見学をご希望の場合も、お問い合わせから承ります。一般のご来場は催事・展示の開催時に限ります。開催日時や入場条件は、各イベントの案内をご確認ください。", image: IMG("about-bay.jpg") },
     ],
@@ -431,7 +431,7 @@ const en: Content = {
   about: {
     hero: { kicker: "About", title: "About", lead: "An event venue on Osaka Bay, bringing people together.", image: IMG("atelier-sunset.jpg") },
     chapters: [
-      { no: "I", title: "An event venue on Osaka Bay", body: "THE JEWELRY is an event venue in Nanko, Osaka. Originally built as a museum, its dome now welcomes enquiries for events and gallery use, from exhibitions and brand events to receptions. Tell us what you would like to host.", image: IMG("atelier-dome.jpg") },
+      { no: "I", title: "An event venue on Osaka Bay", body: "THE JEWELRY is an event venue in Nanko, Osaka. Originally built as a museum, its dome now welcomes enquiries for events and gallery use, from exhibitions and brand events to receptions. Tell us what you would like to host.", image: IMG("waterfront-bluehour.jpg") },
       { no: "II", title: "Spaces for your event", body: "Choose from the Dome, the Waterfront and the Entrance Hall. Discuss how each space could work for your event, including your lighting, sound and installation requirements.", image: IMG("atelier-sail.jpg") },
       { no: "III", title: "For organisers and visitors", body: "Organisers are welcome to enquire before dates or plans are finalised, including requests for a site visit. Public access is during events and exhibitions. Visitors should check each organiser’s dates, times and admission requirements.", image: IMG("about-bay.jpg") },
     ],
