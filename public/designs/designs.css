@@ -76,3 +76,25 @@
 @keyframes ag-stamp-arrive{from{opacity:0;scale:1.6;rotate:35deg}to{opacity:1;scale:1;rotate:-12deg}}
 @media(max-width:800px){.ivory-radical .ivory-main-photo{margin-left:15%;margin-right:4%}.ivory-motion-controls{bottom:0;gap:15px}.ivory-motion-controls button{font-size:8px}.ivory-radical .edition{bottom:42px}.ag-radical .ag-hero-copy{top:31%}.ag-radical .ag-hero-copy h1{font-size:17vw}.ag-stamp{top:18%;right:7%;width:94px;height:94px}.ag-stamp span{font-size:5px}.ag-stamp b{font-size:13px;margin:6px 0}.ag-radical .ag-hero-copy>.eyebrow{font-size:6px}}
 @media(prefers-reduced-motion:reduce){.ivory-ribbon,.ivory-radical .ivory-hero h1,.ivory-radical .ivory-photo-detail,.ag-radical.ag-impact .ag-shutter,.ag-radical.ag-impact .ag-hero-copy h1,.ag-stamp{animation:none!important;transform:none!important;translate:none!important;rotate:0deg!important;scale:1!important;filter:none!important;opacity:1!important;clip-path:none}.ag-shutter{display:none}.ag-radical .ag-slides{opacity:1;filter:none}.ivory-motion-controls{display:none}}
+
+/* B is now spatial and scroll-driven: a circular window expands into a panorama. */
+.ivory-hero.ivory-aperture{--aperture:0;display:block;height:240svh;max-height:none;min-height:0;padding:0;overflow:clip;position:relative}
+.ivory-aperture .ivory-hero-type{position:sticky;top:0;height:100svh;width:100%;padding:9svh 7%;z-index:3;pointer-events:none}
+.ivory-aperture .ivory-hero-type>.eyebrow{opacity:calc(1 - var(--aperture)*2);animation:none!important}
+.ivory-aperture .ivory-hero h1{animation:none!important}
+.ivory-aperture h1{font-size:clamp(65px,8vw,135px);margin:8svh 0 30px;position:relative;color:#253b37;translate:calc(var(--aperture)*-12vw) 0;opacity:calc(1 - var(--aperture)*1.7);animation:none!important}
+.ivory-aperture .hero-ja{font-size:18px;line-height:2;opacity:calc(1 - var(--aperture)*2);animation:none!important}
+.ivory-aperture .ivory-hero-type>.text-link{pointer-events:auto;opacity:calc(1 - var(--aperture)*3);animation:none!important}
+.ivory-aperture .edition{display:none}
+.ivory-aperture .ivory-main-photo{position:sticky;top:0;height:100svh;width:100%;margin:-100svh 0 0;padding:0;z-index:1;overflow:hidden;clip-path:circle(calc(22vmin + var(--aperture)*100vmax) at 72% 48%);animation:none!important}
+.ivory-aperture .ivory-main-photo>img{height:100%;width:100%;object-position:65% center;transform:scale(calc(1.16 - var(--aperture)*.16));animation:none!important;opacity:1}
+.ivory-aperture .ivory-main-photo>span{display:none}
+.ivory-aperture .ivory-photo-detail{display:none}
+.ivory-scroll-guide{position:sticky;top:86svh;height:14svh;width:100%;margin-top:-14svh;padding:20px 7%;display:flex;align-items:center;justify-content:space-between;gap:20px;z-index:4;color:#253b37;mix-blend-mode:difference;color:#d7cbb1;pointer-events:none}
+.ivory-scroll-guide span:first-child{font-size:8px;letter-spacing:.18em}.ivory-scroll-guide span:last-child{font-size:11px}
+.ivory-scroll-end{height:0}
+.ivory-aperture:after{content:'The bay. Yours to discover.';position:absolute;left:7%;bottom:16svh;z-index:4;color:#fff5df;font:italic 400 clamp(35px,6vw,90px)/1.1 Georgia,serif;max-width:80%;text-shadow:0 2px 25px #0005;opacity:var(--aperture);pointer-events:none}
+@media(max-width:800px){.ivory-aperture .ivory-hero-type{padding:6svh 6%;height:100svh}.ivory-aperture h1{font-size:12vw;margin:6svh 0 25px}.ivory-aperture .hero-ja{font-size:15px}.ivory-aperture .ivory-main-photo{height:100svh;width:100%;margin:-100svh 0 0;top:0;clip-path:circle(calc(28vmin + var(--aperture)*100vmax) at 69% 64%)}.ivory-aperture .ivory-main-photo img{object-position:64% center}.ivory-scroll-guide{padding:15px 6%;gap:12px}.ivory-scroll-guide span:last-child{font-size:9px}.ivory-aperture:after{font-size:11vw;bottom:20svh}}
+@media(prefers-reduced-motion:reduce){.ivory-hero.ivory-aperture{height:100svh}.ivory-aperture .ivory-main-photo{clip-path:none!important}.ivory-aperture .ivory-hero-type{opacity:0}.ivory-aperture:after{opacity:1}.ivory-scroll-guide{display:none}}
+
+.ivory-hero.ivory-aperture.ivory-ready h1{animation:none!important;opacity:clamp(0,calc(1 - var(--aperture)*3.5),1)}
