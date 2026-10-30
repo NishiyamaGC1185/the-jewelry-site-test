@@ -8,3 +8,33 @@
 
 .afterglow .brand img { filter:brightness(0) invert(1); }
 @media(max-width:800px){.ivory-hero-type{padding-top:30px}.ivory-hero h1{font-size:12vw;line-height:1.08;margin:28px 0 24px}.ivory-hero h1 i{white-space:nowrap}.ivory-hero{min-height:890px}.ivory-main-photo{height:410px}.ivory .eyebrow{font-size:7px}}
+
+/* B: slow layers, soft light, and restrained movement. */
+.ivory-ready .ivory-hero-type>.eyebrow{animation:ivory-arrive 1.8s .15s both}
+.ivory-hero.ivory-ready h1{animation:ivory-arrive 2.6s .4s both}
+.ivory-ready .hero-ja{animation:ivory-arrive 2.6s .9s both}
+.ivory-ready .ivory-hero-type>.text-link{animation:ivory-arrive 2.4s 1.3s both}
+.ivory-ready .ivory-main-photo{animation:ivory-photo-arrive 3.3s .2s both}
+.ivory-ready .ivory-photo-detail{animation:ivory-detail-arrive 3.2s 1s both}
+.ivory-main-photo img{animation:gentle-drift 22s ease-in-out infinite alternate}
+@keyframes ivory-arrive{from{opacity:0;filter:blur(3px);translate:0 19px}to{opacity:1;filter:blur(0);translate:0 0}}
+@keyframes ivory-photo-arrive{from{opacity:0;clip-path:inset(4% 2% 4% 2%);translate:0 24px}to{opacity:1;clip-path:inset(0);translate:0 0}}
+@keyframes ivory-detail-arrive{from{opacity:0;translate:0 24px;rotate:4deg}to{opacity:1;translate:0 0;rotate:0deg}}
+/* C: a large sliding image, hard-cut typography, and a rhythmic accent. */
+.ag-slides img{opacity:0;transform:translateX(9%) scale(1.16);transition:opacity .9s ease,transform 1.9s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
+.ag-slides img.active{opacity:1;transform:translateX(0) scale(1)}
+.ag-impact .ag-hero-copy h1{animation:ag-type-impact 1.15s .1s both}
+.ag-impact .ag-hero-copy>.eyebrow{animation:ag-caption-impact .8s .1s both}
+.ag-impact .ag-hero-copy>p:not(.eyebrow){animation:ag-caption-impact 1s .4s both}
+.ag-impact .ag-arrow{animation:ag-caption-impact .9s .6s both}
+.ag-impact .ag-hero-shade:after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 28%,#efb3bc35 50%,transparent 72%);animation:ag-light-pass 1.7s both;pointer-events:none}
+.ag-current{font:400 21px Georgia,serif}.ag-rule{position:relative;overflow:hidden;background:#fff3}.ag-rule:after{content:'';position:absolute;inset:0;background:#efb3bc;transform-origin:left;animation:ag-time 6.5s linear infinite}
+.afterglow:has(.ag-pause[aria-label*="再開"]) .ag-rule:after{animation-play-state:paused}
+@keyframes ag-type-impact{from{opacity:0;clip-path:inset(0 100% 0 0);translate:-65px 0;filter:blur(7px)}55%{opacity:1;filter:blur(0)}to{opacity:1;clip-path:inset(0);translate:0 0;filter:blur(0)}}
+@keyframes ag-caption-impact{from{opacity:0;translate:0 22px}to{opacity:1;translate:0 0}}
+@keyframes ag-light-pass{from{translate:-130% 0}to{translate:130% 0}}
+@keyframes ag-time{from{scale:0 1}to{scale:1 1}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.ivory-ready *,.ag-impact *{filter:none!important;clip-path:none!important;translate:none!important}.ag-slides img{transform:none!important}}
+
+.ag-impact .ag-slides img.active{animation:ag-image-impact 1.9s cubic-bezier(.16,1,.3,1) both}
+@keyframes ag-image-impact{from{transform:translateX(9%) scale(1.16)}to{transform:translateX(0) scale(1)}}
