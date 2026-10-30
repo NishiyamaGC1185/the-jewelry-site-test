@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Tagged Instagram posts -> public/instagram/posts.json + images (skips cleanly without a token).
+      - run: node scripts/fetch-instagram.mjs
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      # Google Fonts downloads occasionally fail in CI; retry the build up to 3 times.
+      - run: |
+          for i in 1 2 3; do
+            npm run build && exit 0
+            echo "Build attempt $i failed, retrying in 20s"
+            sleep 20
+          done
+          exit 1
+        env:
+          GITHUB_PAGES: "1"
+          PAGES_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ vars.WEB3FORMS_KEY }}
+      - run: touch out/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

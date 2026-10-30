@@ -1,0 +1,30 @@
+name: Refresh Instagram token
+
+# Long-lived Instagram-login tokens expire after 60 days. Refreshing weekly keeps the
+# token alive (same job as LOBMEYR's refresh.php) and saves it back as a repo secret.
+# Needs secrets IG_ACCESS_TOKEN and GH_SECRETS_PAT (a fine-grained token for this repo
+# with "Secrets: Read and write"); skips quietly until both exist.
+on:
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refresh token and save it
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_SECRETS_PAT }}
+        run: |
+          if [ -z "$IG_ACCESS_TOKEN" ] || [ -z "$GH_TOKEN" ]; then
+            echo "Instagram secrets not set yet, skipping."
+            exit 0
+          fi
+          NEW=$(curl -fsS "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${IG_ACCESS_TOKEN}" | jq -r '.access_token // empty')
+          if [ -z "$NEW" ]; then
+            echo "Token refresh failed."
+            exit 1
+          fi
+          echo "::add-mask::$NEW"
+          gh secret set IG_ACCESS_TOKEN --body "$NEW" --repo "$GITHUB_REPOSITORY"
+          echo "Token refreshed."

@@ -1,0 +1,71 @@
+/* The adopted CINEMA identity, shared by the venue's pages. */
+:root { --color-black:#080b0e; --color-coal:#111519; --color-white:#eee7da; --color-ivory:#1b2025; --color-accent:#c8ab81; --color-accent-hi:#e7d2b1; --color-accent-lo:#9a805f; --color-mute:#a79a87; --iri:linear-gradient(100deg,#a58760,#e6d0ad); --accent-grad:linear-gradient(110deg,#c7aa7e,#e3cba6); }
+body { background:#080b0e; color:#eee7da; }
+.logo { background:#e4cfaf; }
+.kicker { color:#ba9d75; }
+.iri-text { color:#d7bc92; }
+.site-head.maison-head { background:#080b0ee8; border-bottom:1px solid #cdb28b2b; color:#eee7da; }
+.site-head.maison-head.solid { background:#080b0ef2; border-bottom-color:#cdb28b3b; }
+.maison-brand { color:#eee7da; }
+.maison-brand small { color:#a68f6d; }
+.maison-navigation a { color:#b8ac9b; }
+.maison-navigation a:hover,.maison-navigation a[aria-current] { color:#efdab8; }
+.maison-head .head-right { color:#c3b092; }
+.head-lang a { color:#877864; }
+.head-lang a[aria-current],.head-lang a:hover { color:#e4c9a2; }
+.maison-head-cta { border-color:#b69b72; color:#d9bd94; }
+.maison-head-cta:hover { background:#d2b58b; color:#101418; }
+.menu-btn { color:#d9bd96; }
+.maison-menu { background:#080b0e; }
+.maison-menu-label { color:#ac8c66; }
+.maison-menu .menu-name { color:#bfb1a0; }
+.maison-menu .menu-links li { border-bottom-color:#b89d7833; }
+.maison-menu .menu-links a:hover .menu-name,.maison-menu .menu-links a[aria-current] .menu-name { color:#e9cd9f; }
+.maison-menu .menu-no,.maison-menu .menu-links a[aria-current] .menu-no { color:#ad8d63; }
+.maison-menu .menu-media img { filter:brightness(.86); }
+.btn-accent { background:#d2b58b; color:#101418; }
+.btn-accent::before { background:#ebd6b4; }
+.btn-line { border-color:#b79b72; color:#dac09b; }
+.btn-line::before { background:#d7bc92; }
+.btn-line:hover { color:#101418; }
+.page-hero { background:#080b0e; }
+.page-hero .hero-img { border-radius:0; }
+.page-hero .page-hero-inner h1 { color:#e4cbab; }
+.page-hero .page-hero-inner .lead { color:#ac9c87; }
+.page-hero p.lead { border-top-color:#b398713f; }
+.page-hero .page-index { color:#ad8d62; }
+.contact-band { background:#111519; border-color:#b3987133; }
+.contact-band .display { color:#e0c6a0; }
+.site-foot { background:#0b0e12; color:#b2a18a; border-top-color:#b59b7438; }
+.site-foot .logo { background:#d5b98d; }
+html .site-foot .foot-word.display { color:#e3ccaa; opacity:1; border-bottom-color:#b29a7633; font-family:"Times New Roman",serif; letter-spacing:-.04em; }
+.site-foot .caption { color:#9c876b; }
+.site-foot nav a:hover { color:#e4ca9f; }
+.feed-label { background:#080b0ee0; color:#d8be97; }
+.chip { color:#c9ac83; border-color:#a68d653d; }
+.ev-facts details,.ev-facts summary,.flow-steps li { border-color:#b69c7638; }
+.route-diagram,.route-chart { color:#e5d0ac; }
+.page-veil { background:#0c1116e8; }
+body:has(.cinema-home) .maison-brand>span:last-child { font-family:var(--font-en),Arial,sans-serif; font-size:17px; letter-spacing:.01em; }
+body:has(.cinema-home) .maison-brand small { font-size:5px; letter-spacing:.14em; }
+body:has(.cinema-home) .maison-navigation a { font-family:var(--font-en),Arial,sans-serif; font-size:9px; text-transform:uppercase; letter-spacing:.12em; }
+body:has(.cinema-home) .maison-head .head-row { padding-block:24px; }
+body:has(.cinema-home) .maison-brand>.logo { width:28px; }
+::selection { background:#d2b58b; color:#080b0e; }
+@media(max-width:700px) {
+ body:has(.cinema-home) .maison-head .head-row { padding-block:20px; }
+ body:has(.cinema-home) .maison-brand>span:last-child { font-size:13px; }
+ body:has(.cinema-home) .maison-brand small { font-size:4px; }
+ body:has(.cinema-home) .maison-brand>.logo { width:25px; }
+ .page-hero .hero-img { border-radius:0; }
+}
+
+/* Compact footer branding. */
+html .site-foot .foot-word.display { font-size:clamp(28px,4vw,52px); line-height:1.15; margin:22px 0 12px; padding:12px 0 18px; letter-spacing:-.025em; }
+html .site-foot > div:last-child .logo { width:32px; flex:none; }
+
+html .site-foot > div:first-child { display:grid; gap:28px; }
+html .site-foot nav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 22px; font-size:12px; line-height:1.7; }
+html .site-foot > div:first-child > div:last-child { display:flex; flex-direction:column; align-items:flex-start; gap:8px; font-size:12px; }
+html .site-foot > div:last-child { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; }
+@media(min-width:900px) { html .site-foot > div:first-child { grid-template-columns:1.4fr 1fr 1fr; gap:32px; } }

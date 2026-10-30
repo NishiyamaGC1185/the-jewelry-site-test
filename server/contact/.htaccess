@@ -1,0 +1,16 @@
+# Only contact.php is reachable from the web; config and the rate-limit file are not.
+
+# Apache 2.4
+<IfModule mod_authz_core.c>
+    <FilesMatch "^(config\.php|ratelimit\.json)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+# Fallback for older Apache
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^(config\.php|ratelimit\.json)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>

@@ -1,0 +1,17 @@
+# Block HTTP access to PHP scripts, config and logs in this folder.
+# posts.json and the images/ folder stay public (the website needs them).
+
+# Apache 2.4
+<IfModule mod_authz_core.c>
+    <FilesMatch "\.(php|log|tmp)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+# Fallback for older Apache (Sakura may run 2.2-style).
+<IfModule !mod_authz_core.c>
+    <FilesMatch "\.(php|log|tmp)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>

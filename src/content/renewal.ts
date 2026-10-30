@@ -1,0 +1,70 @@
+import type { Lang } from "./site";
+
+const ja = {
+  eyebrow: "EVENT VENUE — OSAKA BAY",
+  heroLines: ["A scene to", "remember."],
+  heroTitle: ["その一日が、", "忘れられない景色になる。"],
+  heroBody: "海と光に包まれる、特別な舞台。\n心に描いた一日を、大阪湾のこの場所で。",
+  explore: "この場所を知る", host: "開催について相談する", visit: "訪れる・開催情報を見る",
+  scenes: ["夕映えのドーム", "光が降りそそぐ空間", "海辺で過ごすひととき"],
+  opening: "2026年11月1日より、催事・展示のご依頼を正式に受け付けます。",
+  storyLabel: "THE ART OF GATHERING",
+  storyTitle: ["ここでしか出会えない、", "ときめきがある。"],
+  storyBody: "空を映すガラスのドーム。水面にほどける夕日の光。\n日常から少し離れただけで、心までひらいていく。\nTHE JEWELRYは、大阪湾のほとりに佇む\nイベント施設です。",
+  storyFoot: "展示会、ブランドイベント、レセプションなどに。\nあなたのアイデアが、この場所の次の物語になります。",
+  storyLink: "THE JEWELRYについて",
+  occasions: "思い描く一日を、かたちに。",
+  occasionsBody: "作品と出会う。ブランドの世界に浸る。大切な人と集う。\nこの空間の使い方は、あなたの想像から広がります。",
+  occasionCards: [
+    { en: "Art & Exhibition", title: "感性に、出会う。", body: "展覧会・ギャラリー・インスタレーション", image: "atelier-sail" },
+    { en: "Brand Experience", title: "世界観に、浸る。", body: "新作発表・ブランドイベント・展示", image: "atelier-light" },
+    { en: "Reception & Gathering", title: "特別な時間を、分かち合う。", body: "レセプション・交流会・パーティー", image: "atelier-reception" },
+  ],
+  occasionLink: "催事・展示のご利用について",
+  spacesTitle: "イベントに合う、会場を。", spacesBody: "ドーム、外周部、エントランス館内。\nイベントの目的や規模に合わせて、会場の使い方をご相談いただけます。",
+  spacesLink: "会場を詳しく見る",
+  spaces: [
+    { name: "ブランドイベント", en: "Brand Events", image: "event-runway", body: "ファッションショー、新作発表会、ポップアップなど。ブランドの世界観や魅力を伝える、印象に残るイベントをご相談ください。" },
+    { name: "外周部", en: "The Waterfront", image: "waterfront-bluehour", body: "大阪湾に面した屋外空間。マルシェや屋外展示など、景色を活かした催事をご相談いただけます。" },
+    { name: "エントランス館内", en: "The Entrance Hall", image: "atelier-hall", body: "海を望む館内空間。小規模な展示やレセプション、記者発表などの会場利用をご相談ください。" },
+  ],
+  quote: ["人が集まると、", "景色は、もっと美しくなる。"],
+  visitTitle: ["次の休日は、", "少しだけ、非日常へ。"],
+  visitBody: "催事・展示の開催に合わせてご来場いただけます。開催日時やチケット、入場方法は、各主催者の案内をご確認ください。",
+  visitNote: "カフェの常設営業は行っていません。", accessLink: "アクセス・ご来場案内", eventInfo: "最新の開催情報", station: "コスモスクエア駅から徒歩約10分",
+  journalTitle: "THE JEWELRYの、いま。", journalLink: "公式Instagramを見る", journalBody: "開催のお知らせや、この場所のさまざまな表情を、公式Instagramでお届けします。",
+  contactEyebrow: "LET’S CREATE SOMETHING BEAUTIFUL.", contactTitle: ["あなたの想いで、", "この場所は、輝きはじめる。"],
+  contactBody: "開催のアイデアや会場見学のご相談から、お気軽に。\n日程・想定人数・ご希望の内容を、フォームまたはInstagramのDMでお知らせください。", contactCta: "会場利用のご相談", dm: "Instagramで相談する", upcoming: "催事・展示の正式受付を開始予定", newsHeading: "お知らせ",
+};
+
+const en: typeof ja = {
+  eyebrow: "EVENT VENUE — OSAKA BAY",
+  heroLines: ["A scene to", "remember."], heroTitle: ["Some days become", "beautiful memories."],
+  heroBody: "A remarkable setting, wrapped in light.\nBring your next gathering to the shores of Osaka Bay.",
+  explore: "Discover the place", host: "Host an event", visit: "Visit & discover what’s on",
+  scenes: ["The dome at golden hour", "An interior filled with light", "A moment by the water"],
+  opening: "Official event and exhibition enquiries open on 1 November 2026.",
+  storyLabel: "THE ART OF GATHERING", storyTitle: ["Some places", "stay with you."],
+  storyBody: "A glass dome reflecting the sky. Sunset unfolding across the water.\nA little distance from the everyday, a whole new perspective.\nTHE JEWELRY is an event venue\non the shores of Osaka Bay.",
+  storyFoot: "For exhibitions, brand events and receptions.\nYour ideas become the next chapter of this place.", storyLink: "Our story",
+  occasions: "Imagine your occasion.", occasionsBody: "Discover art. Step into a brand’s world. Bring people together.\nThe possibilities begin with your imagination.",
+  occasionCards: [
+    { en: "Art & Exhibition", title: "An encounter with art.", body: "Exhibitions, galleries & installations", image: "atelier-sail" },
+    { en: "Brand Experience", title: "A world to step into.", body: "Launches, brand events & exhibitions", image: "atelier-light" },
+    { en: "Reception & Gathering", title: "A moment to share.", body: "Receptions, gatherings & parties", image: "atelier-reception" },
+  ], occasionLink: "Explore events & exhibitions",
+  spacesTitle: "Find your setting.", spacesBody: "The Dome, the waterfront and the Entrance Hall.\nLet’s discuss the right space for your occasion.", spacesLink: "Explore the spaces",
+  spaces: [
+    { name: "Brand Events", en: "Brand Events", image: "event-runway", body: "Fashion shows, product launches and pop-ups. Discuss an event that brings your brand’s character and ideas to life." },
+    { name: "The Waterfront", en: "The Waterfront", image: "waterfront-bluehour", body: "An outdoor space facing Osaka Bay. Enquire about markets, outdoor exhibitions and other waterfront events." },
+    { name: "Entrance Hall", en: "The Entrance Hall", image: "atelier-hall", body: "An indoor space overlooking the sea. Enquire about smaller exhibitions, receptions and press events." },
+  ],
+  quote: ["Beautiful places.", "Even better, together."], visitTitle: ["A little escape.", "A lasting impression."],
+  visitBody: "Public access is during events and exhibitions. Check the organiser’s dates, opening hours, ticketing and admission requirements before visiting.", visitNote: "There is no daily café service.",
+  accessLink: "Plan your visit", eventInfo: "Discover what’s on", station: "About 10 minutes on foot from Cosmosquare Station",
+  journalTitle: "Life at THE JEWELRY.", journalLink: "Follow our Instagram", journalBody: "Discover event announcements and moments from our world on the official Instagram.",
+  contactEyebrow: "LET’S CREATE SOMETHING BEAUTIFUL.", contactTitle: ["Your idea.", "An extraordinary setting."],
+  contactBody: "Early ideas and site visit requests are welcome.\nShare your preferred dates, guest numbers and event plans through the form or Instagram DM.", contactCta: "Enquire about your event", dm: "Message us on Instagram", upcoming: "Official event & exhibition enquiries open soon", newsHeading: "News",
+};
+
+export const renewal: Record<Lang, typeof ja> = { ja, en };
