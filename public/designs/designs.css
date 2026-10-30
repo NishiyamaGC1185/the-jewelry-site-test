@@ -125,3 +125,24 @@
 @keyframes theatre-scene{from{transform:scale(1.12);filter:brightness(.5)}to{transform:scale(1);filter:brightness(1)}}
 @media(max-width:800px){.ag-theatre .ag-hero-copy{top:29%}.ag-curtain span{font-size:6vw;letter-spacing:.06em}}
 @media(prefers-reduced-motion:reduce){.ag-curtains{display:none}.ag-theatre.ag-impact .ag-hero-copy h1,.ag-theatre.ag-impact .ag-hero-copy>.eyebrow,.ag-theatre.ag-impact .ag-hero-copy>p:not(.eyebrow),.ag-theatre.ag-impact .ag-arrow,.ag-theatre.ag-impact .ag-slides img.active{animation:none!important;opacity:1;filter:none;translate:none;transform:none}}
+
+/* The second act starts after the curtains: moving type becomes the main event. */
+.ag-kinetic{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.ag-kinetic>span{position:absolute;white-space:nowrap;line-height:.9;font-weight:500;letter-spacing:-.07em;opacity:0;will-change:transform,opacity}
+.ag-kinetic-one{top:26%;left:0;font-size:clamp(100px,21vw,350px);color:#fff0d8;mix-blend-mode:screen}
+.ag-kinetic-two{top:50%;right:0;font:italic 400 clamp(100px,17vw,280px)/.9 Georgia,serif;color:#efb3bc}
+.ag-kinetic-three{top:38%;left:0;font-size:clamp(90px,16vw,260px);font-weight:700!important;color:transparent;-webkit-text-stroke:1px #fff6dc}
+.ag-theatre.ag-impact .ag-kinetic-one{animation:kinetic-act-one 3.2s 2.6s both}
+.ag-theatre.ag-impact .ag-kinetic-two{animation:kinetic-act-two 3.4s 3.1s both}
+.ag-theatre.ag-impact .ag-kinetic-three{animation:kinetic-act-three 3.1s 4.15s both}
+.ag-theatre.ag-impact .ag-hero-copy h1{animation:kinetic-title-land 2.1s 5.5s both}
+.ag-theatre.ag-impact .ag-hero-copy>.eyebrow{animation:theatre-title 1.3s 6.1s both}
+.ag-theatre.ag-impact .ag-hero-copy>p:not(.eyebrow){animation:theatre-title 1.6s 6.5s both}
+.ag-theatre.ag-impact .ag-arrow{animation:theatre-title 1.5s 6.8s both}
+.ag-theatre .ag-rule:after{animation-duration:13s}
+@keyframes kinetic-act-one{0%{opacity:0;transform:translateX(-105%) rotate(-8deg)}20%{opacity:1}45%{opacity:1;transform:translateX(8vw) rotate(-3deg)}70%{opacity:.95}100%{opacity:0;transform:translateX(110vw) rotate(4deg)}}
+@keyframes kinetic-act-two{0%{opacity:0;transform:translateX(105%) rotate(8deg)}25%{opacity:1}48%{opacity:1;transform:translateX(-4vw) rotate(-3deg)}78%{opacity:1}100%{opacity:0;transform:translateX(-110vw) rotate(-9deg)}}
+@keyframes kinetic-act-three{0%{opacity:0;transform:translateX(-60%) scale(1.6)}28%{opacity:.9}55%{opacity:.7;transform:translateX(2vw) scale(1)}100%{opacity:0;transform:translateX(50vw) scale(.7)}}
+@keyframes kinetic-title-land{0%{opacity:0;transform:translateY(70px) rotate(-7deg) scale(1.25);filter:blur(6px);clip-path:inset(100% 0 0 0)}55%{opacity:1;filter:blur(0);clip-path:inset(0)}78%{transform:translateY(-8px) rotate(1deg) scale(.98)}100%{opacity:1;transform:translateY(0) rotate(0) scale(1);filter:blur(0);clip-path:inset(0)}}
+@media(max-width:800px){.ag-kinetic-one{font-size:30vw;top:30%}.ag-kinetic-two{font-size:23vw;top:51%}.ag-kinetic-three{font-size:22vw;top:42%}}
+@media(prefers-reduced-motion:reduce){.ag-kinetic{display:none}.ag-theatre.ag-impact .ag-hero-copy h1,.ag-theatre.ag-impact .ag-hero-copy>.eyebrow,.ag-theatre.ag-impact .ag-hero-copy>p:not(.eyebrow),.ag-theatre.ag-impact .ag-arrow{animation:none!important;opacity:1;transform:none;filter:none;clip-path:none}}
